@@ -8,7 +8,33 @@ info:
 tags:
   - name: TemplateDocument
     description: Операции по работе с шаблонами документов
+  - name: Samples
+    description: Примеры методов
 paths:
+  /v1/templates:
+    get:
+      tags:
+        - Sample
+      operationId: hello
+      responses:
+        200:
+          description: hello
+          content:
+            application/json:
+              schema:
+                type: string
+  /v1/templates/find:
+    get:
+      tags:
+        - Sample
+      operationId: find
+      responses:
+        200:
+          description: find
+          content:
+            application/json:
+              schema:
+                type: string
   /v1/templates/documents/{id}:
     get:
       parameters:
