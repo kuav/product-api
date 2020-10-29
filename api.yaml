@@ -61,6 +61,20 @@ paths:
           description: Шаблон не найден
       x-codegen-request-body-name: template
   /v1/templates/documents:
+    get:
+      tags:
+        - TemplateDocument
+      summary: Получение шаблона по идентификатору
+      operationId: findTemplateDocuments
+      responses:
+        200:
+          description: Найденные шаблоны
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/TemplateDocument'
     post:
       tags:
         - TemplateDocument
