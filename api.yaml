@@ -51,6 +51,12 @@ paths:
               $ref: '#/components/schemas/TemplateDocument'
         required: true
       responses:
+        200:
+          description: Обновленный шаблон
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateDocument'
         404:
           description: Шаблон не найден
       x-codegen-request-body-name: template
@@ -68,6 +74,12 @@ paths:
               $ref: '#/components/schemas/TemplateDocument'
         required: true
       responses:
+        200:
+          description: Созданный шаблон
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateDocument'
         405:
           description: Ошибки валидации
       x-codegen-request-body-name: template
