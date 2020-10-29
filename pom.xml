@@ -29,7 +29,6 @@
       <artifactId>swagger-annotations</artifactId>
       <version>1.6.2</version>
     </dependency>
-    <!-- @Nullable annotation -->
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>jsr305</artifactId>
@@ -65,11 +64,6 @@
       <artifactId>jackson-databind</artifactId>
       <version>${jackson-version}</version>
     </dependency>
-    <!--<dependency>
-      <groupId>com.fasterxml.jackson.jaxrs</groupId>
-      <artifactId>jackson-jaxrs-json-provider</artifactId>
-      <version>${jackson-version}</version>
-    </dependency>-->
     <dependency>
       <groupId>org.openapitools</groupId>
       <artifactId>jackson-databind-nullable</artifactId>
