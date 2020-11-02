@@ -118,7 +118,7 @@
               <configOptions>
                 <useTags>true</useTags>
                 <interfaceOnly>true</interfaceOnly>
-                <delegatePattern>true</delegatePattern>
+                <delegatePattern>false</delegatePattern>
                 <skipDefaultInterface>false</skipDefaultInterface>
                 <additionalModelTypeAnnotations>
                   @lombok.Builder
