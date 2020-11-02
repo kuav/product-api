@@ -1,159 +1,122 @@
 openapi: 3.0.1
 info:
-  title: Документация по API
-  description: Пример описания API для микросервисов
+  title: Документация по API сервиса product
   contact:
     email: it4it@otpbank.ru
   version: 0.1.0
 tags:
-  - name: TemplateDocument
-    description: Операции по работе с шаблонами документов
-  - name: Samples
-    description: Примеры методов
+  - name: Tag
+    description: Операции по работе со справочником тегов
+  - name: Product
+    description: Операции по работе с продуктом
 paths:
-  /v1/templates:
-    get:
-      tags:
-        - Sample
-      operationId: hello
-      responses:
-        200:
-          description: hello
-          content:
-            application/json:
-              schema:
-                type: string
-  /v1/templates/find:
-    get:
-      tags:
-        - Sample
-      operationId: find
-      responses:
-        200:
-          description: find
-          content:
-            application/json:
-              schema:
-                type: string
-  /v1/templates/documents/{id}:
+  /v1/tags/{id}:
     get:
       parameters:
         - name: id
           in: path
           schema:
             type: string
-          description: Идентификатор шаблона
+          description: Идентификатор тега
           required: true
       tags:
-        - TemplateDocument
-      summary: Получение шаблона по идентификатору
-      operationId: getTemplateDocumentById
+        - Tag
+      summary: Получение тега по идентификатору
+      operationId: getTagById
       responses:
         200:
-          description: Найденный шаблон
+          description: Найденный тег
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TemplateDocument'
+                $ref: '#/components/schemas/Tag'
         404:
-          description: Шаблон не найден
+          description: Тег не найден
+    delete:
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          description: Идентификатор тега
+          required: true
+      tags:
+        - Tag
+      summary: Удаление тега
+      operationId: deleteTag
+      responses:
+        200:
+          description: Тег удален
+        404:
+          description: Тег не найден
     put:
       parameters:
         - name: id
           in: path
           schema:
             type: string
-          description: Идентификатор шаблона
+          description: Идентификатор тега
           required: true
       tags:
-        - TemplateDocument
-      summary: Обновление шаблона и его параметров
-      operationId: updateTemplateDocument
+        - Tag
+      summary: Обновление тега и его параметров
+      operationId: updateTag
       requestBody:
-        description: Новые данные шаблона для обновления
+        description: Новые данные тега для обновления
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TemplateDocument'
+              $ref: '#/components/schemas/Tag'
         required: true
       responses:
         200:
-          description: Обновленный шаблон
+          description: Обновленный тег
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TemplateDocument'
+                $ref: '#/components/schemas/Tag'
         404:
-          description: Шаблон не найден
-      x-codegen-request-body-name: template
-  /v1/templates/documents:
+          description: Тег не найден
+      x-codegen-request-body-name: tag
+  /v1/tags:
     get:
       tags:
-        - TemplateDocument
-      summary: Получение шаблона по идентификатору
-      operationId: findTemplateDocuments
+        - Tag
+      summary: Получение тегов
+      operationId: findTags
       responses:
         200:
-          description: Найденные шаблоны
+          description: Найденные теги
           content:
             application/json:
               schema:
                 type: array
                 items:
-                    $ref: '#/components/schemas/TemplateDocument'
+                  $ref: '#/components/schemas/Tag'
     post:
       tags:
-        - TemplateDocument
-      summary: Создание шаблона
-      operationId: addTemplateDocument
+        - Tag
+      summary: Создание тега
+      operationId: addTag
       requestBody:
-        description: Параметры шаблона
+        description: Параметры тега
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TemplateDocument'
+              $ref: '#/components/schemas/Tag'
         required: true
       responses:
         200:
-          description: Созданный шаблон
+          description: Созданный тег
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TemplateDocument'
+                $ref: '#/components/schemas/Tag'
         405:
           description: Ошибки валидации
-      x-codegen-request-body-name: template
+      x-codegen-request-body-name: tag
 components:
   schemas:
-    TemplateDocument:
-      type: object
-      properties:
-        id:
-          description: Идентификатор шаблона
-          type: string
-        name:
-          description: Название шаблона
-          type: string
-        version:
-          description: Версия шаблона
-          type: integer
-          format: int32
-        creationDate:
-          description: Дата создания шаблона
-          type: string
-          format: date-time
-        tags:
-          description: Список шаблонов
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-        status:
-          type: string
-          description: Статус шаблона
-          enum:
-            - CREATED
-            - ACTIVE
-            - ARCHIVED
     Tag:
       type: object
       properties:
@@ -163,4 +126,7 @@ components:
           format: int64
         name:
           description: Название тега
+          type: string
+        description:
+          description: Описание тега
           type: string

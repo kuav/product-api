@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ru.otpbank.prcat.service</groupId>
-  <artifactId>prcat-service-template-api</artifactId>
+  <artifactId>prcat-service-product-api</artifactId>
   <version>0.1.0</version>
   <packaging>jar</packaging>
 
-  <name>prcat service-template-api</name>
+  <name>Product catalog product service api</name>
 
   <properties>
     <spring-version>5.2.9.RELEASE</spring-version>
@@ -25,6 +25,7 @@
     <javax-annotation.version>1.3.2</javax-annotation.version>
     <javax-validation.version>2.0.1.Final</javax-validation.version>
     <openapi-generator-plugin.version>4.3.1</openapi-generator-plugin.version>
+    <lombok.version>1.18.12</lombok.version>
   </properties>
 
   <dependencies>
@@ -86,6 +87,11 @@
       <artifactId>javax.servlet-api</artifactId>
       <version>${javax-servlet.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -105,14 +111,24 @@
                 ${project.basedir}/api.yaml
               </inputSpec>
               <generatorName>spring</generatorName>
-              <apiPackage>ru.otpbank.prcat.service.template.api</apiPackage>
-              <modelPackage>ru.otpbank.prcat.service.template.model</modelPackage>
+              <apiPackage>ru.otpbank.prcat.service.product.api</apiPackage>
+              <modelPackage>ru.otpbank.prcat.service.product.model</modelPackage>
               <generateModelDocumentation>true</generateModelDocumentation>
               <generateApis>true</generateApis>
               <configOptions>
+                <useTags>true</useTags>
                 <interfaceOnly>true</interfaceOnly>
                 <delegatePattern>true</delegatePattern>
+                <skipDefaultInterface>false</skipDefaultInterface>
+                <additionalModelTypeAnnotations>
+                  @lombok.Builder
+                  @lombok.NoArgsConstructor
+                  @lombok.AllArgsConstructor
+                </additionalModelTypeAnnotations>
               </configOptions>
+              <additionalProperties>
+                <additionalProperty>modelNameSuffix=Http</additionalProperty>
+              </additionalProperties>
             </configuration>
           </execution>
         </executions>
